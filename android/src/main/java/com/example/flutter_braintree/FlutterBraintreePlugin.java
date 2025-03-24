@@ -77,7 +77,10 @@ public class FlutterBraintreePlugin implements FlutterPlugin, ActivityAware, Met
         activeResult = result;
 
         Intent intent = new Intent(activity, FlutterBraintreeCustom.class);
-        intent.putExtra("authorization", call.argument("authorization"));
+        String authorization = call.argument("authorization");
+        if (authorization != null) {
+            intent.putExtra("authorization", authorization);
+        }
         assert call.argument("request") instanceof Map;
         Map request = (Map) call.argument("request");
 
